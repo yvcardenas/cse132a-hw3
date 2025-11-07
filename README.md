@@ -182,3 +182,6 @@ Each test case is worth **1 point**. Your submission will be evaluated on:
 
 **Code and Test Version**: The code version will be the most updated version in the repo.
 
+## Submission
+
+Submit only the `decompose.py` file to the Gradescope assignment [HW3](https://www.gradescope.com/courses/1155834/assignments/7121651). 
