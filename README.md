@@ -1,14 +1,19 @@
-# CSE 132A Homework 3 (v2.0.0) — 3NF and BCNF, made simple
+# CSE 132A Homework 3 — 3NF and BCNF
+
+Version: 2.0.0
 
 ## Overview
 
-You will be given the functional dependencies. No sample data. Your job is to compute the 3NF and BCNF decompositions.
+In this homework, you will be given the functional dependencies, and compute the 3NF and BCNF decompositions.
 
-We made this version very small and friendly. You only edit two functions in `decompose_v2.py`.
 
-## What you implement
 
-Open `decompose_v2.py` and implement two functions. That’s it.
+## Submission
+
+Only submit the `decompose.py` in gradescope. The `decompose.py` has the following functions:
+
+- `solve_3nf(relation_name, attributes, functional_dependencies)` → returns a list of relations (each a list of attributes)
+- `solve_bcnf(relation_name, attributes, functional_dependencies)` → returns a list of relations (each a list of attributes)
 
 Inputs to both functions:
 - relation_name: like `"R"`
@@ -16,23 +21,18 @@ Inputs to both functions:
 - functional_dependencies: a list of dicts like:
   - `{"left": ["A", "B"], "right": ["C"]}` (right side has exactly one attribute)
 
-What to implement:
-- `solve_3nf(relation_name, attributes, functional_dependencies)` → returns a list of relations (each a list of attributes)
-- `solve_bcnf(relation_name, attributes, functional_dependencies)` → returns a list of relations (each a list of attributes)
-
 Each relation is just a list of attributes. No need to name relations (`R1`, `R2`, ...). The program will print:
 ```json
 { "3nf": [...], "bcnf": [...] }
 ```
 
-## How to run
+## How to test
 
-Each test is a single JSON file in `v3/tests/`.
+Each test is a single JSON file under `tests/`.
 
-Examples (each test is one file):
+Example:
 ```bash
-python3 decompose_v2.py v3/tests/test_00_chain_abc.json
-python3 decompose_v2.py v3/tests/multi_two_relations_independent_test_1_r2_de_f_f_e.json
+python3 decompose.py tests/test_00_chain_abc.json
 ```
 
 ## Input format
@@ -60,12 +60,3 @@ Example output:
   "bcnf": [["A","B"], ["B","C"]]
 }
 ```
-
-## Notes
-- No type hints required.
-- Keep it simple. Use lists and dicts.
-- Version: 2.0.0 (shown in the file).
-
-## Submission
-
-Submit only `decompose_v2.py` on Gradescope for HW3.
