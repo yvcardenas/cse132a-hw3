@@ -129,23 +129,23 @@ def solve_3nf(relation_name, attributes, functional_dependencies):
     for left, right in fds_minimal:
         relation = set(left)
         relation.add(right)
-        if relation not in relations:
-            relations.append(list(relation))
+        if not any(relation == r for r in relations):
+            relations.append(relation)
     # 4. Ensure at least one relation contains a candidate key
-    key = find_candidate_key(attributes, fds_minimal)
-    contains_key = any(set(key).issubset(set(r)) for r in relations)
+    key = set(find_candidate_key(attributes, fds_minimal))
+    contains_key = any(key.issubset(r) for r in relations)
     if not contains_key:
-        relations.append(set(key))
+        relations.append(key)
 
     final_relations = []
     for i, ri in enumerate(relations):
         redundant = False
         for j, rj in enumerate(relations):
-            if i != j and set(ri).issubset(set(rj)):
+            if i != j and ri.issubset(rj):
                 redundant = True
                 break
-            if not redundant:
-                final_relations.append(ri)
+        if not redundant:
+            final_relations.append(ri)
     # 5. Return the list of relations
     return [sorted(list(r)) for r in final_relations]
 
