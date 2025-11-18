@@ -26,8 +26,16 @@ def fds_into_sets(functional_dependencies):
     return fds
 
 # Compute closure
-def compute_closure():
-    pass
+def compute_closure(attributes, fds):
+    result = set(attributes)
+    changed = True
+    while changed:
+        changed = False
+        for left, right in fds:
+            if left.issubset(result) and right not in result:
+                result.add(right)
+                changed = True
+    return result
 
 # Compute minimal cover
 def compute_minimal_cover(fds):
